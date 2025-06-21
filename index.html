@@ -4,19 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="login.css" />
     <title>SolarServe | Login & Registration</title>
   </head>
   <body>
     <div class="wrapper">
       <nav class="nav">
-        <div class="nav-logo">
-          <p>LOGO .</p>
-        </div>
+        <div class="nav-logo"><p>LOGO .</p></div>
         <div class="nav-menu" id="navMenu">
           <ul>
             <li><a href="#" class="link active">Home</a></li>
@@ -26,42 +21,31 @@
           </ul>
         </div>
         <div class="nav-button">
-          <button class="btn white-btn" id="loginBtn" onclick="login()">
-            Sign In
-          </button>
-          <button class="btn" id="registerBtn" onclick="register()">
-            Sign Up
-          </button>
+          <button class="btn white-btn" id="loginBtn">Sign In</button>
+          <button class="btn" id="registerBtn">Sign Up</button>
         </div>
         <div class="nav-menu-btn">
-          <i class="bx bx-menu" onclick="myMenuFunction()"></i>
+          <i class="bx bx-menu" id="menuToggle"></i>
         </div>
       </nav>
-      <!----------------------------- Form box ----------------------------------->
+
       <div class="form-box">
-        <!------------------- login form -------------------------->
+        <!-- Login Form -->
         <div class="login-container" id="login">
           <div class="top">
-            <span
-              >Don't have an account?
-              <a href="#" onclick="register()">Sign Up</a></span
-            >
+            <span>Don't have an account? <a href="#" id="toRegister">Sign Up</a></span>
             <header>Login</header>
           </div>
           <div class="input-box">
-            <input
-              type="text"
-              class="input-field"
-              placeholder="Username or Email"
-            />
+            <input type="text" class="input-field" id="login-username" placeholder="Username or Email" />
             <i class="bx bx-user"></i>
           </div>
           <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password" />
+            <input type="password" class="input-field" id="login-password" placeholder="Password" />
             <i class="bx bx-lock-alt"></i>
           </div>
           <div class="input-box">
-            <input type="submit" class="submit" value="Sign In" />
+            <input type="submit" id="login-submit" class="submit" value="Sign In" />
           </div>
           <div class="two-col">
             <div class="one">
@@ -73,34 +57,33 @@
             </div>
           </div>
         </div>
-        <!------------------- registration form -------------------------->
+
+        <!-- Registration Form -->
         <div class="register-container" id="register">
           <div class="top">
-            <span
-              >Have an account? <a href="#" onclick="login()">Login</a></span
-            >
+            <span>Have an account? <a href="#" id="toLogin">Login</a></span>
             <header>Sign Up</header>
           </div>
           <div class="two-forms">
             <div class="input-box">
-              <input type="text" class="input-field" placeholder="Firstname" />
+              <input type="text" class="input-field" id="signup-firstname" placeholder="Firstname" />
               <i class="bx bx-user"></i>
             </div>
             <div class="input-box">
-              <input type="text" class="input-field" placeholder="Lastname" />
+              <input type="text" class="input-field" id="signup-lastname" placeholder="Lastname" />
               <i class="bx bx-user"></i>
             </div>
           </div>
           <div class="input-box">
-            <input type="text" class="input-field" placeholder="Email" />
+            <input type="text" class="input-field" id="signup-email" placeholder="Email" />
             <i class="bx bx-envelope"></i>
           </div>
           <div class="input-box">
-            <input type="password" class="input-field" placeholder="Password" />
+            <input type="password" class="input-field" id="signup-password" placeholder="Password" />
             <i class="bx bx-lock-alt"></i>
           </div>
           <div class="input-box">
-            <input type="submit" class="submit" value="Register" />
+            <input type="submit" class="submit" id="signup-submit" value="Register" />
           </div>
           <div class="two-col">
             <div class="one">
@@ -114,6 +97,7 @@
         </div>
       </div>
     </div>
+
     <script>
       function myMenuFunction() {
         var i = document.getElementById("navMenu");
@@ -125,26 +109,123 @@
       }
     </script>
     <script>
-      var a = document.getElementById("loginBtn");
-      var b = document.getElementById("registerBtn");
-      var x = document.getElementById("login");
-      var y = document.getElementById("register");
-      function login() {
-        x.style.left = "4px";
-        y.style.right = "-520px";
-        a.className += " white-btn";
-        b.className = "btn";
-        x.style.opacity = 1;
-        y.style.opacity = 0;
-      }
-      function register() {
-        x.style.left = "-510px";
-        y.style.right = "5px";
-        a.className = "btn";
-        b.className += " white-btn";
-        x.style.opacity = 0;
-        y.style.opacity = 1;
-      }
+      // Menu toggle
+document.getElementById("menuToggle").addEventListener("click", () => {
+  const navMenu = document.getElementById("navMenu");
+  navMenu.classList.toggle("responsive");
+});
+
+// Toggle login/register
+const loginContainer = document.getElementById("login");
+const registerContainer = document.getElementById("register");
+const loginBtn = document.getElementById("loginBtn");
+const registerBtn = document.getElementById("registerBtn");
+const toRegister = document.getElementById("toRegister");
+const toLogin = document.getElementById("toLogin");
+
+function showLogin() {
+  loginContainer.style.left = "4px";
+  registerContainer.style.right = "-520px";
+  loginContainer.style.opacity = 1;
+  registerContainer.style.opacity = 0;
+  loginBtn.classList.add("white-btn");
+  registerBtn.classList.remove("white-btn");
+}
+
+function showRegister() {
+  loginContainer.style.left = "-510px";
+  registerContainer.style.right = "5px";
+  loginContainer.style.opacity = 0;
+  registerContainer.style.opacity = 1;
+  registerBtn.classList.add("white-btn");
+  loginBtn.classList.remove("white-btn");
+}
+
+loginBtn.addEventListener("click", showLogin);
+registerBtn.addEventListener("click", showRegister);
+toRegister.addEventListener("click", showRegister);
+toLogin.addEventListener("click", showLogin);
+
+// LOGIN
+document.getElementById("login-submit").addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const username = document.getElementById("login-username").value.trim();
+  const password = document.getElementById("login-password").value.trim();
+
+  if (!username || !password) {
+    alert("Please enter username and password.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Login failed");
+      return;
+    }
+
+    localStorage.setItem("token", data.token);
+    window.location.href = "dashboard.html";
+  } catch (err) {
+    console.error(err);
+    alert("Server error during login.");
+  }
+});
+
+// SIGNUP
+document.getElementById("signup-submit").addEventListener("click", async (e) => {
+  e.preventDefault();
+
+  const firstname = document.getElementById("signup-firstname").value.trim();
+  const lastname = document.getElementById("signup-lastname").value.trim();
+  const email = document.getElementById("signup-email").value.trim();
+  const password = document.getElementById("signup-password").value.trim();
+
+  if (!firstname || !lastname || !email || !password) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  try {
+    const res = await fetch("http://localhost:5000/api/admin/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstname,
+        lastname,
+        email,
+        password
+      })
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      alert(data.message || "Signup failed");
+      return;
+    }
+
+    if (data.token) {
+      localStorage.setItem("token", data.token);
+      window.location.href = "dashboard.html";
+    } else {
+      alert("Signup successful! You can now login.");
+      showLogin();
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Server error during registration.");
+  }
+});
+
     </script>
   </body>
 </html>
