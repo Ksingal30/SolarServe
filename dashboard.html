@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>CRM Admin Dashboard</h1>
+      <button id="logoutBtn" class="btn red">Logout</button>
+    </div>
+
+    <div class="top-bar">
+      <button onclick="window.location.href='add-customer.html'" class="btn">Add New Customer</button>
+    </div>
+
+    <table id="customerTable">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Customers will appear here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

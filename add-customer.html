@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add/Edit Customer</title>
+  <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+  <div class="container">
+    <h1 id="formTitle">Add New Customer</h1>
+
+    <form id="customerForm">
+      <label>
+        Name:
+        <input type="text" id="name" required>
+      </label><br><br>
+
+      <label>
+        Email:
+        <input type="email" id="email" required>
+      </label><br><br>
+
+      <label>
+        Phone:
+        <input type="text" id="phone" required>
+      </label><br><br>
+
+      <button type="submit" class="btn">Submit</button>
+      <button type="button" onclick="window.location.href='dashboard.html'" class="btn red">Cancel</button>
+    </form>
+  </div>
+
+  <script src="add-customer.js"></script>
+</body>
+</html>
