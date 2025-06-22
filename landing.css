@@ -20,7 +20,7 @@
             background-size: cover;
             background-repeat: no-repeat;
             background-attachment: fixed;
-            overflow: hidden;
+            overflow: auto;
             /* background-color: #f3f4f6;
             color: var(--dark); */
             line-height: 1.6;
