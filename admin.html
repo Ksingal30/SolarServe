@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CustomerConnect | CRM Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-handshake"></i>
+            <span>CustomerConnect</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="#"><i class="fas fa-user"></i> Admin</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li class="active"><i class="fas fa-home"></i> Dashboard</li>
+                <li><i class="fas fa-users"></i> Customers</li>
+                <li><i class="fas fa-ticket-alt"></i> Service Requests</li>
+                <li><i class="fas fa-chart-line"></i> Analytics</li>
+                <li><i class="fas fa-calendar"></i> Calendar</li>
+                <li><i class="fas fa-file-invoice"></i> Reports</li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="dashboard-header">
+                <h1>Customer Management Dashboard</h1>
+                <button class="btn btn-primary" id="addCustomerBtn">
+                    <i class="fas fa-plus"></i> Add Customer
+                </button>
+            </div>
+            
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total Customers</h3>
+                    <div class="value" id="totalCustomers">0</div>
+                    <div class="trend">+2.5% from last month</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Open Requests</h3>
+                    <div class="value" id="openRequests">0</div>
+                    <div class="trend">3 new today</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Avg. Response Time</h3>
+                    <div class="value">4.2h</div>
+                    <div class="trend">Improved by 15%</div>
+                </div>
+                <div class="stat-card">
+                    <h3>Satisfaction Rate</h3>
+                    <div class="value">92%</div>
+                    <div class="trend">+3% from last quarter</div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-users"></i> Customers</h2>
+                    <div class="search-box">
+                        <input type="text" placeholder="Search customers...">
+                    </div>
+                </div>
+                <table id="customersTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Company</th>
+                            <th>Last Contact</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Customers will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="fas fa-ticket-alt"></i> Service Requests</h2>
+                    <button class="btn btn-primary" id="addRequestBtn">
+                        <i class="fas fa-plus"></i> New Request
+                    </button>
+                </div>
+                <table id="requestsTable">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Customer</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th>Created</th>
+                            <th>Priority</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Requests will be dynamically inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Customer Modal -->
+    <div class="modal" id="customerModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalCustomerTitle">Add New Customer</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="customerForm">
+                    <div class="form-group">
+                        <label for="customerName">Full Name *</label>
+                        <input type="text" id="customerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerEmail">Email *</label>
+                        <input type="email" id="customerEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="customerPhone">Phone</label>
+                        <input type="tel" id="customerPhone">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerCompany">Company</label>
+                        <input type="text" id="customerCompany">
+                    </div>
+                    <div class="form-group">
+                        <label for="customerAddress">Address</label>
+                        <textarea id="customerAddress"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn" id="cancelCustomerBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Customer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Request Modal -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalRequestTitle">Create Service Request</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="requestForm">
+                    <div class="form-group">
+                        <label for="requestCustomer">Customer *</label>
+                        <select id="requestCustomer" required>
+                            <option value="">Select Customer</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestTitle">Title *</label>
+                        <input type="text" id="requestTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestDescription">Description *</label>
+                        <textarea id="requestDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestStatus">Status</label>
+                        <select id="requestStatus">
+                            <option value="Open">Open</option>
+                            <option value="In Progress">In Progress</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestPriority">Priority</label>
+                        <select id="requestPriority">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                            <option value="Urgent">Urgent</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn" id="cancelRequestBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>© 2025 CustomerConnect CRM. All rights reserved. | Version 2.1.0</p>
+    </footer>
+
+    <script src="admin.js">   
+    </script>
+</body>
+</html>
