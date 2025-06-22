@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ServiceHub | Customer Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="customer.css">
+<body>
+    <header>
+        <div class="logo">
+            <i class="fas fa-handshake"></i>
+            <span>ServiceHub</span>
+        </div>
+        <div class="user-info">
+            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User">
+            <span>KAVYA (Customer)</span>
+        </div>
+    </header>
+    <div class="container">
+        <div class="dashboard-header">
+            <h1>Customer Dashboard</h1>
+            <button class="btn btn-primary" id="newRequestBtn">
+                <i class="fas fa-plus"></i> New Service Request
+            </button>
+        </div>
+        <div class="card">
+            <div class="card-header">
+                <h2><i class="fas fa-ticket-alt"></i> Your Service Requests</h2>
+            </div>
+            <table id="requestsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                        <th>Created</th>
+                        <th>Last Updated</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Requests will be dynamically inserted here -->
+                </tbody>
+            </table>
+            <div id="emptyState" class="empty-state">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>No Service Requests Found</h3>
+                <p>You haven't submitted any service requests yet. Click the "New Service Request" button to get started.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Request Modal -->
+    <div class="modal" id="requestModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create Service Request</h2>
+                <button class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="requestForm">
+                    <div class="form-group">
+                        <label for="requestTitle">Title *</label>
+                        <input type="text" id="requestTitle" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestDescription">Description *</label>
+                        <textarea id="requestDescription" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="requestCategory">Category</label>
+                        <select id="requestCategory">
+                            <option value="Technical">Technical Issue</option>
+                            <option value="Billing">Billing Question</option>
+                            <option value="Account">Account Management</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn" id="cancelRequestBtn">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Submit Request</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="customer.js">
+    </script>
+</body>
+</html>
+
