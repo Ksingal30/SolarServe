@@ -1,5 +1,4 @@
-
-      function myMenuFunction() {
+function myMenuFunction() {
         var i = document.getElementById("navMenu");
         if (i.className === "nav-menu") {
           i.className += " responsive";
@@ -11,8 +10,8 @@
 // Toggle login/register
 const loginContainer = document.getElementById("login");
 const registerContainer = document.getElementById("register");
-const loginBtn = document.getElementById("loginBtn");
-const registerBtn = document.getElementById("registerBtn");
+// const loginBtn = document.getElementById("loginBtn");
+// const registerBtn = document.getElementById("registerBtn");
 const toRegister = document.getElementById("toRegister");
 const toLogin = document.getElementById("toLogin");
 
@@ -21,8 +20,8 @@ function showLogin() {
   registerContainer.style.right = "-520px";
   loginContainer.style.opacity = 1;
   registerContainer.style.opacity = 0;
-  loginBtn.classList.add("white-btn");
-  registerBtn.classList.remove("white-btn");
+  // loginBtn.classList.add("white-btn");
+  // registerBtn.classList.remove("white-btn");
 }
 
 function showRegister() {
@@ -30,14 +29,21 @@ function showRegister() {
   registerContainer.style.right = "5px";
   loginContainer.style.opacity = 0;
   registerContainer.style.opacity = 1;
-  registerBtn.classList.add("white-btn");
-  loginBtn.classList.remove("white-btn");
+  // registerBtn.classList.add("white-btn");
+  // loginBtn.classList.remove("white-btn");
 }
 
-loginBtn.addEventListener("click", showLogin);
-registerBtn.addEventListener("click", showRegister);
-toRegister.addEventListener("click", showRegister);
-toLogin.addEventListener("click", showLogin);
+// loginBtn.addEventListener("click", showLogin);
+// registerBtn.addEventListener("click", showRegister);
+toRegister.addEventListener("click", function (e) {
+  e.preventDefault();
+  showRegister();
+});
+
+toLogin.addEventListener("click", function (e) {
+  e.preventDefault();
+  showLogin();
+});
 
 // LOGIN
 document.getElementById("login-submit").addEventListener("click", async (e) => {
