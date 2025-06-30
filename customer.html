@@ -1,93 +1,390 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ServiceHub | Customer Dashboard</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="customer.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ServiceHub | Customer Dashboard</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="customer.css">
+</head>
 <body>
-    <header>
-        <div class="logo">
-            <i class="fas fa-handshake"></i>
-            <span>ServiceHub</span>
-        </div>
-        <div class="user-info">
-            <img src="https://ui-avatars.com/api/?name=John+Doe&background=random" alt="User">
-            <span>KAVYA (Customer)</span>
-        </div>
-    </header>
-    <div class="container">
-        <div class="dashboard-header">
-            <h1>Customer Dashboard</h1>
-            <button class="btn btn-primary" id="newRequestBtn">
-                <i class="fas fa-plus"></i> New Service Request
-            </button>
-        </div>
-        <div class="card">
-            <div class="card-header">
-                <h2><i class="fas fa-ticket-alt"></i> Your Service Requests</h2>
-            </div>
-            <table id="requestsTable">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Created</th>
-                        <th>Last Updated</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Requests will be dynamically inserted here -->
-                </tbody>
-            </table>
-            <div id="emptyState" class="empty-state">
-                <i class="fas fa-ticket-alt"></i>
-                <h3>No Service Requests Found</h3>
-                <p>You haven't submitted any service requests yet. Click the "New Service Request" button to get started.</p>
-            </div>
-        </div>
+  <header>
+    <div class="logo">
+      <i class="fas fa-handshake"></i>
+      <span>ServiceHub</span>
     </div>
-
-    <!-- New Request Modal -->
-    <div class="modal" id="requestModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>Create Service Request</h2>
-                <button class="close-btn">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form id="requestForm">
-                    <div class="form-group">
-                        <label for="requestTitle">Title *</label>
-                        <input type="text" id="requestTitle" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="requestDescription">Description *</label>
-                        <textarea id="requestDescription" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="requestCategory">Category</label>
-                        <select id="requestCategory">
-                            <option value="Technical">Technical Issue</option>
-                            <option value="Billing">Billing Question</option>
-                            <option value="Account">Account Management</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
-                    <div class="form-actions">
-                        <button type="button" class="btn" id="cancelRequestBtn">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Submit Request</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    <div class="user-info">
+      <span><h3>Customer</h3></span>
     </div>
+  </header>
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Customer Dashboard</h1>
+      <button class="btn btn-primary" id="newRequestBtn">
+        <i class="fas fa-plus"></i> New Service Request
+      </button>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2><i class="fas fa-ticket-alt"></i> Your Service Requests</h2>
+      </div>
+      <table id="requestsTable">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Complaint</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Created</th>
+            <th>Last Updated</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Requests will be dynamically inserted here -->
+        </tbody>
+      </table>
+      <div id="emptyState" class="empty-state">
+        <i class="fas fa-ticket-alt"></i>
+        <h3>No Service Requests Found</h3>
+        <p>You haven't submitted any service requests yet. Click the "New Service Request" button to get
+          started.</p>
+      </div>
+    </div>
+  </div>
 
-    <script src="customer.js">
-    </script>
+  <!-- New Request Modal -->
+  <div class="modal" id="requestModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Create Service Request</h2>
+      </div>
+      <div class="modal-body">
+        <form id="requestForm">
+          <div class="form-group">
+            <label for="requestTitle">Complaint *</label>
+            <input type="text" id="requestTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="requestDescription">Description *</label>
+            <textarea id="requestDescription" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="requestCategory">Category</label>
+            <select id="requestCategory">
+              <option value="Technical">Technical Issue</option>
+              <option value="Billing">Billing Question</option>
+              <option value="Account">Account Management</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn" id="cancelRequestBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- View Request Modal -->
+  <div class="modal" id="viewModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Request Details</h2>
+        <button class="close-btn" id="closeViewBtn">&times;</button>
+      </div>
+      <div class="modal-body" id="viewBody">
+        <!-- Details will be injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Request Modal -->
+  <div class="modal" id="editModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Edit Request</h2>
+        <button class="close-btn" id="closeEditBtn">&times;</button>
+      </div>
+      <div class="modal-body">
+        <form id="editForm">
+          <input type="hidden" id="editId">
+          <div class="form-group">
+            <label for="editTitle">Complaint *</label>
+            <input type="text" id="editTitle" required>
+          </div>
+          <div class="form-group">
+            <label for="editDescription">Description *</label>
+            <textarea id="editDescription" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="editCategory">Category</label>
+            <select id="editCategory">
+              <option value="Technical">Technical Issue</option>
+              <option value="Billing">Billing Question</option>
+              <option value="Account">Account Management</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-actions">
+            <button type="button" class="btn" id="cancelEditBtn">Cancel</button>
+            <button type="submit" class="btn btn-primary">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import {
+    getDatabase,
+    ref,
+    push,
+    onValue,
+    update,
+    remove
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import {
+    getAuth,
+    onAuthStateChanged
+  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const firebaseConfig = {
+      apiKey: "AIzaSyAcYioG1gezPsewVO3Pq2CvrymFR8aAuA",
+      authDomain: "crm-bac3e.firebaseapp.com",
+      databaseURL: "https://crm-bac3e-default-rtdb.firebaseio.com",
+      projectId: "crm-bac3e",
+      storageBucket: "crm-bac3e.appspot.com",
+      messagingSenderId: "829710881547",
+      appId: "1:829710881547:web:22ae89a24d0244c811480e",
+      measurementId: "G-TPGTKZFCZH"
+    };
+
+    const app = initializeApp(firebaseConfig); 
+    const db = getDatabase(app);
+    const auth = getAuth(app);
+
+    const requestsRef = ref(db, "requests");
+
+    let currentUser = null;
+
+    const newRequestBtn = document.getElementById("newRequestBtn");
+    const requestModal = document.getElementById("requestModal");
+    const cancelRequestBtn = document.getElementById("cancelRequestBtn");
+    const form = document.getElementById("requestForm");
+    const requestsTable = document.querySelector("#requestsTable tbody");
+    const emptyState = document.getElementById("emptyState");
+
+    const editModal = document.getElementById("editModal");
+    const editForm = document.getElementById("editForm");
+    const closeEditBtn = document.getElementById("closeEditBtn");
+    const cancelEditBtn = document.getElementById("cancelEditBtn");
+
+    const viewModal = document.getElementById("viewModal");
+    const viewBody = document.getElementById("viewBody");
+    const closeViewBtn = document.getElementById("closeViewBtn");
+
+    newRequestBtn.addEventListener("click", () => {
+      requestModal.style.display = "flex";
+    });
+
+    cancelRequestBtn.addEventListener("click", () => {
+      requestModal.style.display = "none";
+    });
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = document.getElementById("requestTitle").value.trim();
+  const description = document.getElementById("requestDescription").value.trim();
+  const category = document.getElementById("requestCategory").value;
+
+  if (!title || !description) {
+    alert("Please fill in all required fields.");
+    return;
+  }
+  
+  const customerName = localStorage.getItem("customerName") || prompt("Enter your name:");
+localStorage.setItem("customerName", customerName); 
+
+  const request = {
+    complaint: title,
+    description,
+    category,
+    userId: currentUser?.uid || localStorage.getItem("userId"), // ✅ Attach correct user ID
+    customerName: customerName,
+    created: new Date().toISOString(),
+    updated: new Date().toISOString()
+  };
+
+  push(requestsRef, request)
+    .then(() => {
+      alert("✅ Request submitted successfully!");
+      form.reset();
+      requestModal.style.display = "none";
+    })
+    .catch((err) => {
+      console.error("Error saving request:", err);
+      alert("❌ Failed to submit request.");
+    });
+});
+
+    onAuthStateChanged(auth, (user) => {
+  setTimeout(() => {
+    if (user) {
+      currentUser = user;
+      const userId = user.uid;
+      onValue(requestsRef, (snapshot) => renderRequests(snapshot, userId));
+    } else {
+      const storedUserId = localStorage.getItem("userId");
+      if (storedUserId) {
+        currentUser = { uid: storedUserId };
+        onValue(requestsRef, (snapshot) => renderRequests(snapshot, storedUserId));
+      } else {
+        alert("You must be logged in.");
+        window.location.href = "login.html";
+      }
+    }
+  }, 500); 
+});
+
+    function renderRequests(snapshot, userId) {
+      requestsTable.innerHTML = "";
+      const data = snapshot.val();
+      let hasData = false;
+
+      if (!data) {
+        emptyState.style.display = "block";
+        return;
+      }
+
+      Object.entries(data).forEach(([id, request]) => {
+        if (request.userId !== userId) return;
+
+        hasData = true;
+        const category = request.category || "Other";
+        const categoryClass = `badge ${category.toLowerCase().replace(" ", "-")}`;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${id}</td>
+          <td>${request.complaint}</td>
+          <td>${request.description}</td>
+          <td><span class="${categoryClass}">${request.category}</span></td>
+          <td>${new Date(request.created).toLocaleDateString()}</td>
+          <td>${new Date(request.updated).toLocaleDateString()}</td>
+          <td>
+            <button class="action-btn view-request" data-id="${id}"><i class="fas fa-eye"></i></button>
+            <button class="action-btn edit-request" data-id="${id}"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete-request" data-id="${id}"><i class="fas fa-trash"></i></button>
+          </td>
+        `;
+        requestsTable.appendChild(row);
+      });
+
+      emptyState.style.display = hasData ? "none" : "block";
+    }
+
+    //  Delete Request
+    requestsTable.addEventListener("click", (e) => {
+      const deleteBtn = e.target.closest(".delete-request");
+      if (deleteBtn) {
+        const id = deleteBtn.dataset.id;
+        const confirmDelete = confirm("Delete this request?");
+        if (confirmDelete) {
+          remove(ref(db, `requests/${id}`))
+            .then(() => alert("🗑️ Request deleted."))
+            .catch((err) => alert("❌ Error deleting request."));
+        }
+      }
+    });
+
+    //  Edit Request
+    requestsTable.addEventListener("click", (e) => {
+      const editBtn = e.target.closest(".edit-request");
+      if (editBtn) {
+        const row = editBtn.closest("tr");
+        const id = editBtn.dataset.id;
+
+        document.getElementById("editId").value = id;
+        document.getElementById("editTitle").value = row.children[1].innerText;
+        document.getElementById("editDescription").value = row.children[2].innerText;
+        document.getElementById("editCategory").value = row.children[3].innerText;
+
+        editModal.style.display = "flex";
+      }
+    });
+
+  // Close Edit Modal
+  [closeEditBtn, cancelEditBtn].forEach(btn =>
+    btn.addEventListener("click", () => {
+      editModal.style.display = "none";
+    })
+  );
+
+  //  Submit Edited Request
+  editForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const id = document.getElementById("editId").value;
+    const updatedData = {
+      complaint: document.getElementById("editTitle").value,
+      description: document.getElementById("editDescription").value,
+      category: document.getElementById("editCategory").value,
+      updated: new Date().toISOString()
+    };
+
+    update(ref(db, `requests/${id}`), updatedData)
+      .then(() => {
+        alert("✏️ Request updated.");
+        editModal.style.display = "none";
+      })
+      .catch((err) => alert("❌ Update failed."));
+  });
+
+  //  View Request
+  requestsTable.addEventListener("click", (e) => {
+    const viewBtn = e.target.closest(".view-request");
+    if (viewBtn) {
+      const row = viewBtn.closest("tr");
+      const id = viewBtn.dataset.id;
+
+      const title = row.children[1].innerText;
+      const description = row.children[2].innerText;
+      const category = row.children[3].innerText;
+      const created = row.children[4].innerText;
+      const updated = row.children[5].innerText;
+
+      viewBody.innerHTML = `
+        <p><strong>ID:</strong> ${id}</p>
+        <p><strong>Complaint:</strong> ${title}</p>
+        <p><strong>Description:</strong> ${description}</p>
+        <p><strong>Category:</strong> ${category}</p>
+        <p><strong>Created:</strong> ${created}</p>
+        <p><strong>Updated:</strong> ${updated}</p>
+      `;
+      viewModal.style.display = "flex";
+    }
+  });
+
+  closeViewBtn.addEventListener("click", () => {
+    viewModal.style.display = "none";
+  });
+
+
+
+});
+
+</script>
+
+
+
 </body>
+
 </html>
 
