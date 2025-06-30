@@ -1,76 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CustomerConnect | CRM Dashboard</title>
-    <link rel="stylesheet" href="admin.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Dashboard</title>
+    <link rel="stylesheet" href="admin.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 </head>
+
 <body>
     <header>
         <div class="logo">
             <i class="fas fa-handshake"></i>
-            <span>CustomerConnect</span>
+            <span>ServiceHub</span>
         </div>
         <nav>
             <ul>
-                <li><a href="#" class="active">Dashboard</a></li>
-                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="#"><i class="fas fa-user"></i> Admin</a></li>
+                <a href="#"><i class="fas fa-user"></i>Admin</a>
+                </li>
             </ul>
         </nav>
     </header>
-    
+
     <div class="container">
-        <aside class="sidebar">
-            <ul class="sidebar-menu">
-                <li class="active"><i class="fas fa-home"></i> Dashboard</li>
-                <li><i class="fas fa-users"></i> Customers</li>
-                <li><i class="fas fa-ticket-alt"></i> Service Requests</li>
-                <li><i class="fas fa-chart-line"></i> Analytics</li>
-                <li><i class="fas fa-calendar"></i> Calendar</li>
-                <li><i class="fas fa-file-invoice"></i> Reports</li>
-            </ul>
-        </aside>
-        
         <main class="main-content">
             <div class="dashboard-header">
                 <h1>Customer Management Dashboard</h1>
-                <button class="btn btn-primary" id="addCustomerBtn">
-                    <i class="fas fa-plus"></i> Add Customer
-                </button>
             </div>
-            
-            <div class="stats-container">
-                <div class="stat-card">
-                    <h3>Total Customers</h3>
-                    <div class="value" id="totalCustomers">0</div>
-                    <div class="trend">+2.5% from last month</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Open Requests</h3>
-                    <div class="value" id="openRequests">0</div>
-                    <div class="trend">3 new today</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Avg. Response Time</h3>
-                    <div class="value">4.2h</div>
-                    <div class="trend">Improved by 15%</div>
-                </div>
-                <div class="stat-card">
-                    <h3>Satisfaction Rate</h3>
-                    <div class="value">92%</div>
-                    <div class="trend">+3% from last quarter</div>
-                </div>
-            </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-users"></i> Customers</h2>
-                    <div class="search-box">
-                        <input type="text" placeholder="Search customers...">
-                    </div>
+                    <button class="btn btn-primary" id="addCustomerBtn">
+                    <i class="fas fa-plus"></i> Add Customer
+                </button>
                 </div>
                 <table id="customersTable">
                     <thead>
@@ -78,8 +42,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Company</th>
-                            <th>Last Contact</th>
+                            <th>Product</th>
+                            <th>Date of Purchase</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -88,7 +52,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
             <div class="card">
                 <div class="card-header">
                     <h2><i class="fas fa-ticket-alt"></i> Service Requests</h2>
@@ -101,10 +65,9 @@
                         <tr>
                             <th>ID</th>
                             <th>Customer</th>
+                            <th>Complaint</th>
                             <th>Description</th>
-                            <th>Status</th>
                             <th>Created</th>
-                            <th>Priority</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -115,51 +78,50 @@
             </div>
         </main>
     </div>
-    
+
     <!-- Customer Modal -->
     <div class="modal" id="customerModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalCustomerTitle">Add New Customer</h2>
-                <button class="close-btn">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="customerForm">
                     <div class="form-group">
                         <label for="customerName">Full Name *</label>
-                        <input type="text" id="customerName" required>
+                        <input type="text" id="customerName" required />
                     </div>
                     <div class="form-group">
                         <label for="customerEmail">Email *</label>
-                        <input type="email" id="customerEmail" required>
+                        <input type="email" id="customerEmail" required />
                     </div>
                     <div class="form-group">
                         <label for="customerPhone">Phone</label>
-                        <input type="tel" id="customerPhone">
+                        <input type="tel" id="customerPhone" />
                     </div>
                     <div class="form-group">
-                        <label for="customerCompany">Company</label>
-                        <input type="text" id="customerCompany">
+                        <label for="customerCompany">Product</label>
+                        <input type="text" id="customerCompany" />
                     </div>
-                    <div class="form-group">
-                        <label for="customerAddress">Address</label>
-                        <textarea id="customerAddress"></textarea>
-                    </div>
+                    
                     <div class="form-actions">
-                        <button type="button" class="btn" id="cancelCustomerBtn">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Customer</button>
+                        <button type="button" class="btn" id="cancelCustomerBtn">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Save Customer
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
-    <!-- Request Modal -->
+
+    <!-- Request Model -->
     <div class="modal" id="requestModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 id="modalRequestTitle">Create Service Request</h2>
-                <button class="close-btn">&times;</button>
             </div>
             <div class="modal-body">
                 <form id="requestForm">
@@ -170,45 +132,215 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="requestTitle">Title *</label>
-                        <input type="text" id="requestTitle" required>
+                        <label for="requestTitle">Complaint *</label>
+                        <input type="text" id="requestTitle" required />
                     </div>
                     <div class="form-group">
                         <label for="requestDescription">Description *</label>
                         <textarea id="requestDescription" required></textarea>
                     </div>
-                    <div class="form-group">
-                        <label for="requestStatus">Status</label>
-                        <select id="requestStatus">
-                            <option value="Open">Open</option>
-                            <option value="In Progress">In Progress</option>
-                            <option value="Completed">Completed</option>
-                            <option value="Closed">Closed</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="requestPriority">Priority</label>
-                        <select id="requestPriority">
-                            <option value="Low">Low</option>
-                            <option value="Medium" selected>Medium</option>
-                            <option value="High">High</option>
-                            <option value="Urgent">Urgent</option>
-                        </select>
+                    
                     </div>
                     <div class="form-actions">
-                        <button type="button" class="btn" id="cancelRequestBtn">Cancel</button>
-                        <button type="submit" class="btn btn-primary">Save Request</button>
+                        <button type="button" class="btn" id="cancelRequestBtn">
+                            Cancel
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            Save Request
+                        </button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    
+
     <footer>
         <p>© 2025 CustomerConnect CRM. All rights reserved. | Version 2.1.0</p>
     </footer>
 
-    <script src="admin.js">   
+    <script type="module">
+        //  Firebase Setup
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+        import {
+            getDatabase,
+            ref,
+            push,
+            onValue,
+            remove,
+            get,
+            child
+        } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAcYioG1gezPsewVO3Pq2CvrymFR8aAuA",
+            authDomain: "crm-bac3e.firebaseapp.com",
+            databaseURL: "https://crm-bac3e-default-rtdb.firebaseio.com",
+            projectId: "crm-bac3e",
+            storageBucket: "crm-bac3e.appspot.com",
+            messagingSenderId: "829710881547",
+            appId: "1:829710881547:web:22ae89a24d0244c811480e",
+            measurementId: "G-TPGTKZFCZH",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+        const customersRef = ref(db, "customers");
+
+        // Generate readable ID like CUST-001
+        async function generateCustomerID() {
+            const snapshot = await get(customersRef);
+            const customers = snapshot.exists() ? Object.values(snapshot.val()) : [];
+            const nextNumber = customers.length + 1;
+            return `CUST-${String(nextNumber).padStart(3, '0')}`;
+        }
+
+        //  DOM Elements
+        const addCustomerBtn = document.getElementById("addCustomerBtn");
+        const customerModal = document.getElementById("customerModal");
+        const cancelCustomerBtn = document.getElementById("cancelCustomerBtn");
+        const customerForm = document.getElementById("customerForm");
+        const customersTable = document.querySelector("#customersTable tbody");
+
+        const addRequestBtn = document.getElementById("addRequestBtn");
+        const requestModal = document.getElementById("requestModal");
+        const cancelRequestBtn = document.getElementById("cancelRequestBtn");
+        const requestForm = document.getElementById("requestForm");
+        const requestsTable = document.querySelector("#requestsTable tbody");
+        const requestCustomerSelect = document.getElementById("requestCustomer");
+
+        //  Modal Show/Hide
+        addCustomerBtn.addEventListener("click", () => {
+            customerModal.style.display = "flex";
+        });
+        cancelCustomerBtn.addEventListener("click", () => {
+            customerModal.style.display = "none";
+        });
+
+        addRequestBtn.addEventListener("click", () => {
+            requestModal.style.display = "flex";
+        });
+        cancelRequestBtn.addEventListener("click", () => {
+            requestModal.style.display = "none";
+        });
+
+
+        // Submit Customer (with readable ID)
+        customerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const customerID = await generateCustomerID(); // Generate readable ID
+
+            const customerData = {
+                name: document.getElementById("customerName").value,
+                email: document.getElementById("customerEmail").value,
+                phone: document.getElementById("customerPhone").value,
+                company: document.getElementById("customerCompany").value,
+                created: new Date().toISOString(),
+            };
+
+            push(ref(db, "customers"), customerData)
+                .then(() => {
+                    alert(`✅ Customer added!`);
+                    customerForm.reset();
+                    customerModal.style.display = "none";
+                })
+                .catch((err) => {
+                    alert("❌ Error: " + err.message);
+                });
+        });
+
+
+
+        //  Submit Request
+        requestForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const requestData = {
+                customer: requestCustomerSelect.value,
+                complaint: document.getElementById("requestTitle").value,
+                description: document.getElementById("requestDescription").value,
+                created: new Date().toISOString(),
+                updated: new Date().toISOString(),
+            };
+
+            push(ref(db, "requests"), requestData)
+                .then(() => {
+                    alert("✅ Request added!");
+                    requestForm.reset();
+                    requestModal.style.display = "none";
+                })
+                .catch((err) => {
+                    alert("❌ Error: " + err.message);
+                });
+        });
+
+        //  Render Customers
+        function renderCustomers(snapshot) {
+            customersTable.innerHTML = "";
+            requestCustomerSelect.innerHTML =
+                '<option value="">Select Customer</option>';
+            const data = snapshot.val();
+            if (!data) return;
+
+            Object.entries(data).forEach(([id, customer]) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+      <td>${customer.name}</td>
+      <td>${customer.email}</td>
+      <td>${customer.phone || "-"}</td>
+      <td>${customer.company || "-"}</td>
+      <td>${new Date(customer.created).toLocaleDateString()}</td>
+      <td><button class="action-btn delete-customer" data-id="${id}"><i class="fas fa-trash"></i></button></td>
+    `;
+                customersTable.appendChild(row);
+
+                // Also add to request modal dropdown
+                const option = document.createElement("option");
+                option.value = customer.name;
+                option.textContent = customer.name;
+                requestCustomerSelect.appendChild(option);
+            });
+        }
+
+        //  Render Requests
+        function renderRequests(snapshot) {
+            requestsTable.innerHTML = "";
+            const data = snapshot.val();
+            if (!data) return;
+
+            Object.entries(data).forEach(([id, req]) => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+      <td>${id}</td>
+      <td>${req.customerName || req.customer || "Unknown"}</td>   
+      <td>${req.complaint}</td>
+      <td>${req.description}</td>
+      <td>${new Date(req.created).toLocaleDateString()}</td>
+      <td><button class="action-btn delete-request" data-id="${id}"><i class="fas fa-trash"></i></button></td>
+    `;
+                requestsTable.appendChild(row);
+            });
+        }
+
+
+        //  Firebase listeners
+        onValue(ref(db, "customers"), renderCustomers);
+        onValue(ref(db, "requests"), renderRequests);
+
+        //  Delete actions
+        customersTable.addEventListener("click", (e) => {
+            const btn = e.target.closest(".delete-customer");
+            if (btn && confirm("Delete this customer?")) {
+                remove(ref(db, `customers/${btn.dataset.id}`));
+            }
+        });
+
+        requestsTable.addEventListener("click", (e) => {
+            const btn = e.target.closest(".delete-request");
+            if (btn && confirm("Delete this request?")) {
+                remove(ref(db, `requests/${btn.dataset.id}`));
+            }
+        });
     </script>
 </body>
+
 </html>
